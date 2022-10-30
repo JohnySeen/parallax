@@ -1,0 +1,109 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,700;1,300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+// объявляем переменные
+$index: calc(1vw + 1vh);   // для того, чтобы сделать "резиновыми" те элементы, к которым применим.
+$main-article-transform: translate3d(0, calc(var(--scrollTop) / 4.5), 0);
+// стили основные
+body {
+    font-family: 'Raleway', normal;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+}
+
+// стили для первой страницы
+.layers {
+    height: 100vh;
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.layer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;         // убираем рывки при скролле
+    z-index: 2;
+}
+
+.layers__base {
+    background-image: url(/images/base.png);
+    transform: translate3d(0, calc(var(--scrollTop) / 1.5), 0);
+    z-index: 0;
+}
+
+.layers__bottom {
+    background-image: url(../images/bottom.png);
+    transform: translate3d(0, calc(var(--scrollTop) / 6.5), 0);
+    z-index: 3;
+}
+
+.layers__middle {
+    background-image: url(../images/middle.png);
+    transform: translate3d(0, calc(var(--scrollTop) / 3.5), 0);
+}
+
+.layer__header {
+    z-index: 1;
+    padding-top: 20rem;
+    color: #09577e;
+    text-shadow: 0 0 10px #aeddc8;
+    transform: translate3d(0, calc(var(--scrollTop) / 2.1), 0);
+    will-change: transform;
+    font-size: calc($index * 1.5);
+}
+
+.layer__text {
+    letter-spacing: calc($index * 1.5);
+    font-weight: 400;
+}
+
+.layer__title {
+    text-transform: uppercase;
+    letter-spacing: calc($index / 10);
+}
+
+/*.layers__top {
+    background-image: url(../images/top.png);
+    transform: translate3d(0, calc(var(--scrollTop) / 2.5), 0);
+    z-index: 1;
+}*/
+
+// стили для второй страницы
+.main-article {
+    min-height: 100vh;
+    background-image: url(../images/grot.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    &__content {
+        align-items: center;
+        max-width: 50rem;
+        margin: 0 auto;
+        //padding-top: 10rem;
+        text-align: center;
+        color: #e5975d;
+        text-shadow: 0 0 3px #f9fce9;
+        font-weight: 500;
+        transform: $main-article-transform;
+        will-change: transform;
+    }
+    &__title {
+        text-transform: uppercase;
+    }
+}
